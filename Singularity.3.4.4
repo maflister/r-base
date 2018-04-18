@@ -18,27 +18,17 @@ From: ubuntu:16.04
 %runscript
     exec R "${@}"
 
+%files
+    pkgs.r
+    Rpackages
+
 %post
     mkdir -p /scratch/global /scratch/local /rcc/stor1/refdata /rcc/stor1/projects /rcc/stor1/depts
     apt-get update
     apt-get -y install \
         software-properties-common \
         apt-transport-https \
-        gstreamer1.0-plugins-base \
-        libcdparanoia0 \
-        libgstreamer-plugins-base1.0-0 \
-        libgstreamer1.0-0 \
-        libjpeg62 \
-        libogg0 \
-        libopus0 \
-        liborc-0.4-0 \
-        libtheora0 \
-        libvisual-0.4-0 \
-        libvorbis0a \
-        libvorbisenc2 \
-        libxslt-dev \
-        locales \
-        texlive-fonts-extra
+        locales
     echo "LC_ALL=en_US.UTF-8" >> /etc/environment
     echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
     echo "LANG=en_US.UTF-8" > /etc/locale.conf
@@ -48,4 +38,8 @@ From: ubuntu:16.04
     apt-get update
     apt-get -y install r-base r-base-dev wget
     apt-get clean
+
+    # install packages
+    Rscript pkgs.r
+    
 
