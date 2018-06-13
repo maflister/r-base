@@ -7,7 +7,7 @@ From: ubuntu:16.04
 %labels
     Maintainer Matthew Flister
     Version 1.0
-    R_Version 3.4.4
+    R_Version 3.5.0
 
 %apprun R
     exec R "${@}"
@@ -18,12 +18,8 @@ From: ubuntu:16.04
 %runscript
     exec R "${@}"
 
-%files
-    pkgs.r
-    Rpackages
-
 %post
-    mkdir -p /scratch/global /scratch/local /rcc/stor1/refdata /rcc/stor1/projects /rcc/stor1/depts
+    mkdir -p /scratch/global /scratch/local /rcc/stor1/refdata /rcc/stor1/projects /rcc/stor1/depts /extR/library1 /extR/library2
     apt-get update
     apt-get -y install \
         software-properties-common \
@@ -35,11 +31,8 @@ From: ubuntu:16.04
     locale-gen en_US.UTF-8
     apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
     add-apt-repository 'deb https://cran.mtu.edu/bin/linux/ubuntu xenial/'
-    apt-get update
+    apt-get update &&\
     apt-get -y install r-base r-base-dev wget
     apt-get clean
 
-    # install packages
-    Rscript pkgs.r
-    
 
