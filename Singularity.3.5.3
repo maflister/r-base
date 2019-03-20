@@ -6,8 +6,7 @@ From: ubuntu:16.04
 
 %labels
     Maintainer Matthew Flister
-    Version 1.0
-    R_Version 3.5.0
+    R_Version 3.5.3
 
 %apprun R
     exec R "${@}"
@@ -17,9 +16,6 @@ From: ubuntu:16.04
 
 %runscript
     exec R "${@}"
-
-%environment 
-    export R_LIBS=/usr/local/lib/R/library:/extR/library1:/extR/library2
 
 %post
     mkdir -p /scratch/global /scratch/local /rcc/stor1/refdata /rcc/stor1/projects /rcc/stor1/depts /extR/library1 /extR/library2
@@ -40,7 +36,7 @@ From: ubuntu:16.04
     apt-get -y build-dep r-base 
     apt-get clean
 
-    export R_VERSION=3.5.0
+    export R_VERSION=3.5.3
     export R_URL=https://cran.r-project.org/src/base/R-3/R-${R_VERSION}.tar.gz
     wget $R_URL
     tar -xvf R-${R_VERSION}.tar.gz
