@@ -26,7 +26,10 @@ From: centos:centos6
         perl \
         java-1.8.0-openjdk-devel \
         lapack \
-        blas
+        blas \
+        cairo-devel \
+        libpng-devel \
+        libjpeg-devel
 
     export PATH=/opt/R/3.5.0/bin:$PATH
     export LD_LIBRARY_PATH=/opt/R/3.5.0/lib:$LD_LIBRARY_PATH
